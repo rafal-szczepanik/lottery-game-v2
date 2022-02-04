@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+}
+.wrapper {
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  width: 100vw;
+  background: rgba(95, 95, 90, 0.7);
+}
+.wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/beads-5874025_1920.jpg");
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+}
+
+.main-header {
+  margin: 20px auto;
+  max-width: 500px;
+  text-align: center;
+  font-size: 35px;
+  background: rgba(245, 245, 167, 0.3);
+  border: 1px solid #666;
+  color: rgb(27, 78, 230);
+  text-shadow: 2px 2px 2px #ddd;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 400px;
+  max-width: 500px;
+}
+.ball {
+  position: relative;
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 120%,
+    rgb(253, 246, 191),
+    rgb(255, 215, 0) 80%,
+    rgb(255, 205, 0) 100%
+  );
+  cursor: pointer;
+}
+.clicked-ball {
+  background: radial-gradient(
+    circle at 50% 120%,
+    rgb(250, 248, 235),
+    rgb(153, 151, 138) 80%,
+    rgb(78, 76, 66) 100%
+  );
+}
+.ball:before {
+  content: "";
+  position: absolute;
+  background: radial-gradient(
+    circle at 50% 120%,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0) 70%
+  );
+  border-radius: 50%;
+  bottom: 2.5%;
+  left: 5%;
+  opacity: 0.6;
+  height: 100%;
+  width: 90%;
+}
+.ball::before {
+  width: 50%;
+  height: 50%;
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 1) 36%,
+    rgba(255, 255, 255, 0.2) 4%
+  );
+  transform: translateX(-1px) translateY(-1px) skewX(-20deg);
+  filter: blur(2px);
+}
+.display-numbers-h1 {
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+  background: rgba(245, 245, 167, 0.3);
+  border: 1px solid #666;
+  color: rgb(27, 78, 230);
+  text-shadow: 2px 2px 2px #ddd;
+}
+.choosen-ball {
+  background: radial-gradient(
+    circle at 50% 120%,
+    rgb(183, 183, 241),
+    rgb(29, 83, 243) 80%,
+    blue 100%
+  );
+  color: white;
+}
+.btn-cointainer {
+  width: 100vw;
+}
+.lottery-btn,
+.reset-btn {
+  display: block;
+  margin: 10px auto;
+  padding: 7px 12px;
+  background-color: rgb(38, 38, 252);
+  font-size: 18px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.visible {
+  display: none;
+}
+.lottery-btn:hover,
+.reset-btn:hover {
+  transform: scale(1.05);
+}
+
+.choosen-numbers p {
+  margin: 10px auto;
+  max-width: 500px;
+  min-height: 55px;
+  text-align: center;
+  background: rgba(245, 245, 167, 0.3);
+  border: 1px solid #666;
+  color: rgb(35, 81, 220);
+  text-shadow: 2px 2px 2px #ddd;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 50px;
+}
+.choosen-numbers span {
+  color: yellow;
+}
+
+.pop-up {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 300px;
+  min-width: 300px;
+  background: rgba(87, 107, 199, 0.96);
+  text-align: center;
+  line-height: 200px;
+  color: yellow;
+  z-index: 2;
+}
