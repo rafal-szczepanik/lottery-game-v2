@@ -69,7 +69,7 @@ const displayBallIsClicked = (ballData, displaydBall) => {
 const playLotery = () => {
   const lotteryBallsArr = [];
   if (ballsArena.getChoosenBallsLength() < myChoosenLength) {
-    return alert(`Musisz wybra conajmniej ${myChoosenLength} liczb`);
+    return alert(`Musisz wybrać conajmniej ${myChoosenLength} liczb`);
   }
   displayRandomBalls(lotteryBallsArr);
   displaWinningNumbers(lotteryBallsArr);
@@ -94,20 +94,21 @@ const addClass = (className, index, arr) => {
   if (typeof index === "undefined") {
     index = 0;
   }
-  if (index === myChoosenLength - 1) {
-    setTimeout(() => popUp.classList.remove("visible"), 1000);
-  }
+
   if (arr.length > index) {
     arr[index].classList.add(className);
     setTimeout(() => addClass(className, index + 1, arr), 500);
   }
 };
-const displaWinningNumbers = (arr) =>
+const displaWinningNumbers = (arr) => {
   setTimeout(() => {
     arr.forEach((ball) => {
-      numberText.innerText += ` ${ball.dataset.number}`;
+      popUp.classList.remove("visible");
+      numberText.innerText += ` ${ball.dataset.number},`;
     });
+    numberText.innerText = numberText.innerText.replace(/,\s*$/, "");
   }, 3000);
+};
 //
 //==============playLotery functions End================
 //
