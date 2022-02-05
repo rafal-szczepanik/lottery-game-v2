@@ -6,9 +6,9 @@ export class BallsArena {
   arrLength = 49;
 
   constructor() {
-    this.#createBallsArena();
+    this.createBallsArena();
   }
-  #createBallsArena() {
+  createBallsArena() {
     for (let i = 0; i < this.arrLength; i++) {
       const ballData = {
         number: null,
