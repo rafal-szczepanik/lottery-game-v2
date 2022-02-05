@@ -2,7 +2,7 @@ import { BallsArena } from "./BallsArena.js";
 
 const numberText = document.querySelector(".display-numbers-span");
 const lotteryBtn = document.querySelector(".lottery-btn");
-const ballContainer = document.querySelector(".container");
+let ballContainer = document.querySelector(".container");
 const myNumbers = document.querySelector(".choosen-numbers span");
 const popUp = document.querySelector(".pop-up");
 const popUpTxt = document.querySelector(".pop-up span");
@@ -72,14 +72,15 @@ const playLotery = () => {
     return alert(`Musisz wybrać conajmniej ${myChoosenLength} liczb`);
   }
   displayRandomBalls(lotteryBallsArr);
-  displaWinningNumbers(lotteryBallsArr);
+  showResult(lotteryBallsArr);
   lotteryBtn.classList.add("visible");
 };
 //
 //==============playLotery functions Start================
 //
 const displayRandomBalls = (arr) => {
-  const lotteryArr = ballsArena.getRandomBallsArena(myChoosenLength);
+  let lotteryArr = [];
+  lotteryArr = ballsArena.getRandomBallsArena(myChoosenLength);
   ballsArena.displaydBallsArr.forEach((ball) => {
     lotteryArr.forEach((lotteryBall) => {
       if (Number(ball.dataset.number) === lotteryBall) {
@@ -94,18 +95,27 @@ const addClass = (className, index, arr) => {
   if (typeof index === "undefined") {
     index = 0;
   }
-
   if (arr.length > index) {
     arr[index].classList.add(className);
     setTimeout(() => addClass(className, index + 1, arr), 500);
   }
 };
-const displaWinningNumbers = (arr) => {
+
+const showResult = (arr) => {
   setTimeout(() => {
+    //Show popup and random numbers bar
     arr.forEach((ball) => {
       popUp.classList.remove("visible");
       numberText.innerText += ` ${ball.dataset.number},`;
     });
+    //Show number of hit balls, remove last comma
+    const mapedChoosenBalls = ballsArena
+      .getChoosenBalls()
+      .map((ball) => ball.number);
+    const yourHitNumbers = arr.filter((ball) => {
+      return mapedChoosenBalls.includes(Number(ball.dataset.number));
+    });
+    popUpTxt.innerText = `${yourHitNumbers.length}`;
     numberText.innerText = numberText.innerText.replace(/,\s*$/, "");
   }, 3000);
 };
@@ -113,7 +123,21 @@ const displaWinningNumbers = (arr) => {
 //==============playLotery functions End================
 //
 
+const playAgain = () => {
+  lotteryBtn.classList.remove("visible");
+  popUp.classList.add("visible");
+  ballContainer.innerText = "";
+  popUpTxt.innerText = "";
+  numberText.innerText = "";
+  myNumbers.innerText = "";
+  ballsArena.arenaArr.length = 0;
+  ballsArena.displaydBallsArr.length = 0;
+  ballsArena.createBallsArena();
+  displayBallsArena();
+};
+
 displayBallsArena();
 console.log("working");
 
 lotteryBtn.addEventListener("click", playLotery);
+resetBtn.addEventListener("click", playAgain);
