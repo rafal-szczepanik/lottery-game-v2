@@ -44,6 +44,10 @@
   min-height: 400px;
   max-width: 500px;
 }
+
+.disable {
+  pointer-events: none;
+}
 .ball {
   position: relative;
   margin: 0 5px;
