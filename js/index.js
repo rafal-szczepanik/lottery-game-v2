@@ -74,13 +74,13 @@ const playLotery = () => {
   displayRandomBalls(lotteryBallsArr);
   showResult(lotteryBallsArr);
   lotteryBtn.classList.add("visible");
+  ballContainer.classList.add("disable");
 };
 //
 //==============playLotery functions Start================
 //
 const displayRandomBalls = (arr) => {
-  let lotteryArr = [];
-  lotteryArr = ballsArena.getRandomBallsArena(myChoosenLength);
+  const lotteryArr = ballsArena.getRandomBallsArena(myChoosenLength);
   ballsArena.displaydBallsArr.forEach((ball) => {
     lotteryArr.forEach((lotteryBall) => {
       if (Number(ball.dataset.number) === lotteryBall) {
@@ -124,16 +124,24 @@ const showResult = (arr) => {
 //
 
 const playAgain = () => {
+  resetDisplaydHtmlElements();
+  resetArraysAfterGame();
+  ballsArena.createBallsArena();
+  //Create new balls arena after reseting styles and arrays
+  displayBallsArena();
+};
+const resetDisplaydHtmlElements = () => {
   lotteryBtn.classList.remove("visible");
+  ballContainer.classList.remove("disable");
   popUp.classList.add("visible");
   ballContainer.innerText = "";
   popUpTxt.innerText = "";
   numberText.innerText = "";
   myNumbers.innerText = "";
+};
+const resetArraysAfterGame = () => {
   ballsArena.arenaArr.length = 0;
   ballsArena.displaydBallsArr.length = 0;
-  ballsArena.createBallsArena();
-  displayBallsArena();
 };
 
 displayBallsArena();
