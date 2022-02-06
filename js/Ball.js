@@ -1,6 +1,9 @@
 export class Ball {
-  constructor(obj) {
-    this.obj = obj;
+  constructor() {
+    this.obj = {
+      number: null,
+      isClicked: false,
+    };
   }
   showBall() {
     console.log(this.obj.isClicked, this.obj.number);
