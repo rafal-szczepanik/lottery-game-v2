@@ -10,11 +10,7 @@ export class BallsArena {
   }
   createBallsArena() {
     for (let i = 0; i < this.arrLength; i++) {
-      const ballData = {
-        number: null,
-        isClicked: false,
-      };
-      const ball = new Ball(ballData);
+      const ball = new Ball();
       ball.obj.number = i + 1;
       this.arenaArr.push(ball.obj);
     }
